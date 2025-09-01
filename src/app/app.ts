@@ -20,23 +20,46 @@ import { FormsModule } from '@angular/forms';
     <input type="text" [(ngModel)] = "twoWayInput" (ngModelChange) = "onChange($event)"> <!-- FormsModule import edilmesi unutulmamalıdır.-->
     <br>
     {{twoWayInput}}
+    {{person.name + " " + person.surname}}
+    @for (user of users; track user){
+      <li>{{ user }}</li>
+    }
+    <span>4 karakterden az olan isimler: {{shortNames.join(', ')}}</span>
     <app-home [pageName] = "pageName"></app-home>
+
   `,
   styleUrl: './app.css'
 })
-export class App {
+export class App { 
   title: string = "Seyyit Battal ARVAS";
   name: string = 'Software Engineer';
   src: string = "https://yt3.googleusercontent.com/L7fPOHO5TwVC_qz78Yo8P0MuJAB8I4FdQmOY2HSW7Z4_AFJZgAHzJCKQXo7ek1sy0pj0dIzM2Xg=s900-c-k-c0x00ffffff-no-rj";
   width: number = 100;
   pageName: string = "Home Sayfası";
+  twoWayInput: string = "";
+  person: {name:any, surname:string} = {name: 3233243, surname: "Arv"};
+  users: string[] = ["Ali", "Ayşe", "Can", "Veli", "Osman", "Ahmet", "ab", "Fatih"];
+  shortNames: string[] = [];
+
   submitButton(){
     console.log("Submit butonuna tıklandı.");
   }
-  twoWayInput: string = "";
+
   onChange(value: string){
     this.twoWayInput = value;
     console.log(value);
+  }
+
+  ngOnInit(){
+    this.showShortNames();
+  }
+
+  showShortNames(){
+    for(const user of this.users){
+      if(user.length < 4){
+        this.shortNames.push(user);
+      }
+    }
   }
 
 }
