@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Home } from './home/home';
 import { FormsModule } from '@angular/forms';
+import { ExpDirective } from './directives/exp-directive';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, FormsModule],
+  imports: [RouterOutlet, Home, FormsModule, ExpDirective],
   //templateUrl: './app.html',
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     }
     <span>4 karakterden az olan isimler: {{shortNames.join(', ')}}</span>
     <app-home [pageName] = "pageName"></app-home>
+    <div appExpDirective>ExpDirective (Attribute)</div>
 
   `,
   styleUrl: './app.css'
