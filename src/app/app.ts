@@ -31,7 +31,7 @@ import { ForDirective } from "./directives/for-directive";
     <app-home [pageName] = "pageName"></app-home>
     <div appExpDirective>ExpDirective (Attribute)</div>
     <div *appStructuralDirective = "true">Bu bir structural-directive</div>
-    <div *appForDirective = "cities; let city">{{city}}</div>
+    <div *appForDirective = "cities; let city, let number = index">{{number}} - {{city}}</div>
 
   `,
   styleUrl: './app.css'
