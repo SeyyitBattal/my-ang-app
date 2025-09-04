@@ -3,10 +3,12 @@ import { RouterOutlet } from '@angular/router';
 import { Home } from './home/home';
 import { FormsModule } from '@angular/forms';
 import { ExpDirective } from './directives/exp-directive';
+import { StructuralDirective } from './directives/structural-directive';
+import { ForDirective } from "./directives/for-directive";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, FormsModule, ExpDirective],
+  imports: [RouterOutlet, Home, FormsModule, ExpDirective, StructuralDirective, ForDirective],
   //templateUrl: './app.html',
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
@@ -28,6 +30,8 @@ import { ExpDirective } from './directives/exp-directive';
     <span>4 karakterden az olan isimler: {{shortNames.join(', ')}}</span>
     <app-home [pageName] = "pageName"></app-home>
     <div appExpDirective>ExpDirective (Attribute)</div>
+    <div *appStructuralDirective = "true">Bu bir structural-directive</div>
+    <div *appForDirective = "cities; let city">{{city}}</div>
 
   `,
   styleUrl: './app.css'
@@ -41,6 +45,8 @@ export class App {
   twoWayInput: string = "";
   person: {name:any, surname:string} = {name: 3233243, surname: "Arv"};
   users: string[] = ["Ali", "Ayşe", "Can", "Veli", "Osman", "Ahmet", "ab", "Fatih"];
+  cities: string[] = ["İstanbul", "Ankara", "Van", "İzmir", "Konya"];
+
   shortNames: string[] = [];
 
   submitButton(){

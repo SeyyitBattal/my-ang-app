@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "types": ["jquery"],
     "target": "ES2022",
     "module": "preserve"
   },
