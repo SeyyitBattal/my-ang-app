@@ -7,13 +7,16 @@ import { StructuralDirective } from './directives/structural-directive';
 import { ForDirective } from "./directives/for-directive";
 import { UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe } from '@angular/common';
 import { CustomPipe } from './pipes/custom-pipe';
+import { Parent } from './components/parent_to_child/parent/parent';
+import { Child2 } from './components/child_to_parent/child2/child2';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet, Home, FormsModule, CustomPipe, 
     ExpDirective, StructuralDirective, ForDirective, 
-    UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe
+    UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
+    Parent, Child2
   ],
   //templateUrl: './app.html',
   template:`
@@ -35,9 +38,15 @@ import { CustomPipe } from './pipes/custom-pipe';
     }
     <span>4 karakterden az olan isimler: {{shortNames.join(', ')}}</span>
     <app-home [pageName] = "pageName"></app-home>
+
+    <hr>
+    
     <div appExpDirective>ExpDirective (Attribute)</div>
     <div *appStructuralDirective = "true">Bu bir structural-directive</div>
     <div *appForDirective = "cities; let city, let number = index">{{number}} - {{city}}</div>
+
+    <hr>
+
     <p>{{pipeName | uppercase }}</p>
     <p>{{10000000 | currency:'₺'}}</p>
     <p>{{'03.30.1997' | date}} 
@@ -48,6 +57,11 @@ import { CustomPipe } from './pipes/custom-pipe';
     <p>{{"title case pipe ile ilk harfler büyütüldü." | titlecase}}</p>
     <p>{{"Rahat yat, rahat kalkma..." | custom : 6 : 17}}</p>
 
+    <hr>
+
+  <app-parent></app-parent>
+  <app-child2></app-child2>
+  
   `,
   styleUrl: './app.css'
 })
