@@ -5,10 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { ExpDirective } from './directives/exp-directive';
 import { StructuralDirective } from './directives/structural-directive';
 import { ForDirective } from "./directives/for-directive";
+import { UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe } from '@angular/common';
+import { CustomPipe } from './pipes/custom-pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Home, FormsModule, ExpDirective, StructuralDirective, ForDirective],
+  imports: [
+    RouterOutlet, Home, FormsModule, CustomPipe, 
+    ExpDirective, StructuralDirective, ForDirective, 
+    UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe
+  ],
   //templateUrl: './app.html',
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
@@ -32,6 +38,15 @@ import { ForDirective } from "./directives/for-directive";
     <div appExpDirective>ExpDirective (Attribute)</div>
     <div *appStructuralDirective = "true">Bu bir structural-directive</div>
     <div *appForDirective = "cities; let city, let number = index">{{number}} - {{city}}</div>
+    <p>{{pipeName | uppercase }}</p>
+    <p>{{10000000 | currency:'₺'}}</p>
+    <p>{{'03.30.1997' | date}} 
+      / {{'03.30.1997' | date: 'fullDate' }} 
+      / {{'03.30.1997 14:53' | date : 'medium'}} 
+    </p>
+    <p>{{['a','n','g','u','l','a','r'] | slice : 2 : 5}}</p>
+    <p>{{"title case pipe ile ilk harfler büyütüldü." | titlecase}}</p>
+    <p>{{"Rahat yat, rahat kalkma..." | custom : 6 : 17}}</p>
 
   `,
   styleUrl: './app.css'
@@ -44,8 +59,9 @@ export class App {
   pageName: string = "Home Sayfası";
   twoWayInput: string = "";
   person: {name:any, surname:string} = {name: 3233243, surname: "Arv"};
-  users: string[] = ["Ali", "Ayşe", "Can", "Veli", "Osman", "Ahmet", "ab", "Fatih"];
+  users: string[] = ["Ali", "Ayşe", "Can", "Veli", "Osman", "Ahmet", "ab", "Fatih", ];
   cities: string[] = ["İstanbul", "Ankara", "Van", "İzmir", "Konya"];
+  pipeName: string = "Pipe kullanılmış text";
 
   shortNames: string[] = [];
 
