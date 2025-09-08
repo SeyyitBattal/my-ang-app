@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Home } from './home/home';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe } from 
 import { CustomPipe } from './pipes/custom-pipe';
 import { Parent } from './components/parent_to_child/parent/parent';
 import { Child2 } from './components/child_to_parent/child2/child2';
+import { LchComponent } from './components/lch-component/lch-component';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,7 @@ import { Child2 } from './components/child_to_parent/child2/child2';
     RouterOutlet, Home, FormsModule, CustomPipe, 
     ExpDirective, StructuralDirective, ForDirective, 
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
-    Parent, Child2
+    Parent, Child2, LchComponent
   ],
   //templateUrl: './app.html',
   template:`
@@ -61,11 +62,18 @@ import { Child2 } from './components/child_to_parent/child2/child2';
 
   <app-parent></app-parent>
   <app-child2></app-child2>
+
+  <hr>
+
+  <app-lch-component data="tetikle"></app-lch-component>
+  <!-- Component oluştururken data ile veri değiştiği için önce onChange tetiklenir -->
+  <!-- Daha sonra component oluştuğu için onInit tetiklenir -->
   
   `,
   styleUrl: './app.css'
 })
-export class App { 
+export class App{ 
+
   title: string = "Seyyit Battal ARVAS";
   name: string = 'Software Engineer';
   src: string = "https://yt3.googleusercontent.com/L7fPOHO5TwVC_qz78Yo8P0MuJAB8I4FdQmOY2HSW7Z4_AFJZgAHzJCKQXo7ek1sy0pj0dIzM2Xg=s900-c-k-c0x00ffffff-no-rj";
