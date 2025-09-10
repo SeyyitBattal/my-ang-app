@@ -10,6 +10,7 @@ import { CustomPipe } from './pipes/custom-pipe';
 import { Parent } from './components/parent_to_child/parent/parent';
 import { Child2 } from './components/child_to_parent/child2/child2';
 import { LchComponent } from './components/lch-component/lch-component';
+import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ import { LchComponent } from './components/lch-component/lch-component';
     RouterOutlet, Home, FormsModule, CustomPipe, 
     ExpDirective, StructuralDirective, ForDirective, 
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
-    Parent, Child2, LchComponent
+    Parent, Child2, LchComponent, TemplateDrivenForm
   ],
   //templateUrl: './app.html',
   template:`
@@ -68,6 +69,10 @@ import { LchComponent } from './components/lch-component/lch-component';
   <app-lch-component data="InputGiris">xxx</app-lch-component>
   <!-- Component oluştururken data ile veri değiştiği için önce onChange tetiklenir -->
   <!-- Daha sonra component oluştuğu için onInit tetiklenir -->
+  
+  <hr>
+
+  <app-template-driven-form></app-template-driven-form>
   
   `,
   styleUrl: './app.css'
