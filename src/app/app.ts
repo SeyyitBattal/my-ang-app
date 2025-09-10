@@ -11,6 +11,7 @@ import { Parent } from './components/parent_to_child/parent/parent';
 import { Child2 } from './components/child_to_parent/child2/child2';
 import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
+import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ import { TemplateDrivenForm } from './components/template-driven-form/template-d
     RouterOutlet, Home, FormsModule, CustomPipe, 
     ExpDirective, StructuralDirective, ForDirective, 
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
-    Parent, Child2, LchComponent, TemplateDrivenForm
+    Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm
   ],
   //templateUrl: './app.html',
   template:`
@@ -73,7 +74,8 @@ import { TemplateDrivenForm } from './components/template-driven-form/template-d
   <hr>
 
   <app-template-driven-form></app-template-driven-form>
-  
+  <app-model-driven-form></app-model-driven-form>
+
   `,
   styleUrl: './app.css'
 })
