@@ -65,7 +65,7 @@ import { LchComponent } from './components/lch-component/lch-component';
 
   <hr>
 
-  <app-lch-component data="tetikle"></app-lch-component>
+  <app-lch-component data="InputGiris">xxx</app-lch-component>
   <!-- Component oluştururken data ile veri değiştiği için önce onChange tetiklenir -->
   <!-- Daha sonra component oluştuğu için onInit tetiklenir -->
   
