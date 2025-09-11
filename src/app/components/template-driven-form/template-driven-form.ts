@@ -9,7 +9,7 @@ import { NgForm, FormsModule } from '@angular/forms';
   <div>
     <p>***Template Driven Form***</p>
 <!--ngForm varsa Template Driven Formdur-->
-<!--ngModel olarak işaretlenmeyener form kontrollerine dahil olmaz-->
+<!--ngModel olarak işaretlenmeyenler form kontrollerine dahil olmaz-->
     <form #frm = "ngForm" (ngSubmit) = "onSubmit(frm.value)">
       <input type="text" name="name" placeholder="Name" ngModel><br>
       <input type="text" name="surname" placeholder="Surname" ngModel><br>
@@ -38,7 +38,7 @@ export class TemplateDrivenForm implements OnInit{
   @ViewChild("frm", {static:true}) frm: NgForm;
 
   ngOnInit(): void {
-    console.log("this ve frm", this.frm);
+    console.log(this.frm);
  }
 
  onSubmit(data : {name:string, surname:string, email:string, phone: number}){

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-model-driven-form',
@@ -18,25 +18,29 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
         <option value="3">Engineer</option>
         <option value="4">Intern</option>
     </select><br>
-<button>Send</button>
+  <button>Send</button>
   </form><hr>  
   </div>
   `,
   styleUrl: './model-driven-form.css'
 })
-export class ModelDrivenForm implements OnInit {
+export class ModelDrivenForm {
   frm: FormGroup;
 
-  ngOnInit(): void {
-      this.frm = new FormGroup({
-        name: new FormControl(),
-        surname: new FormControl(),
-        job: new FormControl()
-      });
+  constructor(private formBuilder : FormBuilder){
+    this.frm = formBuilder.group({
+      name:[""],
+      surname:[""],
+      job:[""]
+    })
+
   }
 
-  onSubmit(data: {name: string, surname: string, job:number}){
+
+  onSubmit(data: { name: string, surname: string, job: number }) {
     console.log(`İsim: ${data.name}, Soyisim: ${data.surname}, Meslek: ${data.job}`);
+
+    console.log("Ayırmadan alınan veriler: ", data);
   }
-  
+
 }
