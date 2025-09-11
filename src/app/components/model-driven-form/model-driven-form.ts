@@ -19,7 +19,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
         <option value="4">Intern</option>
     </select><br>
 <button>Send</button>
-  </form>  
+  </form><hr>  
   </div>
   `,
   styleUrl: './model-driven-form.css'
