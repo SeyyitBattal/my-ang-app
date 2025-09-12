@@ -77,7 +77,7 @@ import { ModelDrivenForm } from './components/model-driven-form/model-driven-for
   <app-model-driven-form></app-model-driven-form>
 
   `,
-  styleUrl: './app.css'
+  styleUrls: ['./app.css']
 })
 export class App{ 
 
