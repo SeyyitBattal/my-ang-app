@@ -12,15 +12,17 @@ import { Child2 } from './components/child_to_parent/child2/child2';
 import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
+import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet, Home, FormsModule, CustomPipe, 
-    ExpDirective, StructuralDirective, ForDirective, 
+    RouterOutlet, Home, FormsModule, CustomPipe,
+    ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
-    Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm
-  ],
+    Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
+    ImprovedMdf
+],
   //templateUrl: './app.html',
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
@@ -75,6 +77,7 @@ import { ModelDrivenForm } from './components/model-driven-form/model-driven-for
 
   <app-template-driven-form></app-template-driven-form>
   <app-model-driven-form></app-model-driven-form>
+  <app-improved-mdf></app-improved-mdf>
 
   `,
   styleUrls: ['./app.css']
