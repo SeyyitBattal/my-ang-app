@@ -1,9 +1,11 @@
+import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { BigFirstLetter } from '../../validators/big-first-letter';
 
 @Component({
   selector: 'app-improved-mdf',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, JsonPipe],
   //templateUrl: './improved-mdf.html',
   template:`
   <div>Improved Model Driven Form</div>
@@ -16,6 +18,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     }<br>
     Email
     <input type="mail" formControlName="email" placeholder="Email">
+    @if(!email.valid && (email.dirty || email.touched)){
+      <span style="color: red">{{email.errors | json}}</span>
+    }<br>
     Phone
     <input type="tel" formControlName="tel" placeholder="Phone">
     Job
@@ -28,6 +33,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
     <div formGroupName="address">
       City
       <input type="text" formControlName="city" placeholder="city">
+      @if(!city.valid && city.value?.length >0){
+        <span style="color: red">{{city.errors | json}}</span>
+      }<br>
       Region
       <input type="text" formControlName="region" placeholder="Region">
     </div>
@@ -51,7 +59,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   `,
   styleUrl: './improved-mdf.css'
 })
-export class ImprovedMdf {
+export class ImprovedMdf {  
   frm:FormGroup;
 
   constructor(private formBuilder : FormBuilder){
@@ -61,7 +69,7 @@ export class ImprovedMdf {
       tel:["", [Validators.minLength(5), Validators.maxLength(25)]],
       job:[""],
       address: formBuilder.group({
-        city:[""],
+        city:["", BigFirstLetter(3)],
         region:[""]
       })
     })
