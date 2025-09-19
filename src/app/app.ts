@@ -25,8 +25,8 @@ import { ProductService } from './components/productService';
     ImprovedMdf, 
 ],
   providers:[
-    ProductService,
-],
+    
+  ],
   //templateUrl: './app.html',
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
@@ -87,7 +87,7 @@ import { ProductService } from './components/productService';
   styleUrls: ['./app.css']
 })
 export class App{ 
-
+  
   constructor(private productService : ProductService){
     console.log(productService.getProducts());
   }
