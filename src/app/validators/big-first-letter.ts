@@ -18,7 +18,7 @@ import { ValidatorFn } from "@angular/forms";
 // }
 
 
-// // PARAMETRE ALAN CUSTOM VALIDATOR (İlk üç harf büyük olmalı):
+// PARAMETRE ALAN CUSTOM VALIDATOR (İlk üç harf büyük olmalı):
 export function BigFirstLetter(count: number):  ValidatorFn {
     return(control: AbstractControl) : ValidationErrors | null =>{
         const value = control.value;

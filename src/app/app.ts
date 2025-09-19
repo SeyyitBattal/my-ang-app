@@ -13,6 +13,7 @@ import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
 import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
+import { ProductService } from './components/productService';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,10 @@ import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
     ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
     Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
-    ImprovedMdf
+    ImprovedMdf, 
+],
+  providers:[
+    ProductService,
 ],
   //templateUrl: './app.html',
   template:`
@@ -83,6 +87,10 @@ import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
   styleUrls: ['./app.css']
 })
 export class App{ 
+
+  constructor(private productService : ProductService){
+    console.log(productService.getProducts());
+  }
 
   title: string = "Seyyit Battal ARVAS";
   name: string = 'Software Engineer';
