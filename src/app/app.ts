@@ -13,7 +13,9 @@ import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
 import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,11 +24,18 @@ import { LoadingService, ProductService } from './components/productService';
     ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
     Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
-    ImprovedMdf, 
+    ImprovedMdf,
 ],
   providers:[
-    ProductService, LoadingService,
-    {provide: "stringProviderExample", useValue: "Bu yazı useValue ile geldi"}
+    LoadingService,
+    {provide: "stringProviderExample", useValue: "Bu yazı useValue ile geldi"}, 
+    {
+      provide: "productService", useFactory: (httpClient:HttpClient, loadingService:LoadingService) => {
+        const obs = httpClient.get("https://jsonplaceholder.typicode.com/posts");
+        const data = firstValueFrom(obs);
+        console.log(data);
+        return new ProductService(loadingService);
+    }, deps:[HttpClient, LoadingService]}
   ],
   //templateUrl: './app.html',
   template:`
@@ -89,10 +98,12 @@ import { LoadingService, ProductService } from './components/productService';
 })
 export class App{
   
-  constructor(private productService : ProductService, @Inject("stringProviderExample") value: string){
-    console.log(productService.getProducts()); 
-    console.log(value);
-  }
+  constructor( 
+      @Inject("stringProviderExample") value: string,
+      @Inject("productService") private productService:ProductService){
+        console.log("useValue ile gelen değer: ", value);
+        console.log(productService.getProducts());
+      }
 
   title: string = "Seyyit Battal ARVAS";
   name: string = 'Software Engineer';

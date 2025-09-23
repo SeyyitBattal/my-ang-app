@@ -4,9 +4,10 @@ import { Injectable } from "@angular/core";
 //Injectable ile işaretliyse o servistir.
 @Injectable()
 export class ProductService{
-    constructor(private loadingService: LoadingService){
+
+    constructor(private loadingService:LoadingService){
         loadingService.log();
-     }
+    }
 
 getProducts() : Product[]{
     return[
@@ -23,7 +24,7 @@ export class Product{
 }
 
 export class LoadingService{
-    log(){
-        console.log("Loading...");
-    }
+log(){
+    console.log("Loading...");
+}
 }
