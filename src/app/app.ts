@@ -13,9 +13,8 @@ import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
 import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -31,9 +30,8 @@ import { firstValueFrom } from 'rxjs';
     {provide: "stringProviderExample", useValue: "Bu yazı useValue ile geldi"}, 
     {
       provide: "productService", useFactory: (httpClient:HttpClient, loadingService:LoadingService) => {
-        const obs = httpClient.get("https://jsonplaceholder.typicode.com/posts");
-        const data = firstValueFrom(obs);
-        console.log(data);
+        httpClient.get("https://jsonplaceholder.typicode.com/posts").subscribe({
+        next:data => console.log(data)});
         return new ProductService(loadingService);
     }, deps:[HttpClient, LoadingService]}
   ],
