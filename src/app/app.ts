@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Home } from './home/home';
 import { FormsModule } from '@angular/forms';
@@ -25,7 +25,8 @@ import { LoadingService, ProductService } from './components/productService';
     ImprovedMdf, 
 ],
   providers:[
-    ProductService, LoadingService
+    ProductService, LoadingService,
+    {provide: "stringProviderExample", useValue: "Bu yazı useValue ile geldi"}
   ],
   //templateUrl: './app.html',
   template:`
@@ -88,8 +89,9 @@ import { LoadingService, ProductService } from './components/productService';
 })
 export class App{
   
-  constructor(private productService : ProductService){
+  constructor(private productService : ProductService, @Inject("stringProviderExample") value: string){
     console.log(productService.getProducts()); 
+    console.log(value);
   }
 
   title: string = "Seyyit Battal ARVAS";
