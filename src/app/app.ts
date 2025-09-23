@@ -13,7 +13,7 @@ import { LchComponent } from './components/lch-component/lch-component';
 import { TemplateDrivenForm } from './components/template-driven-form/template-driven-form';
 import { ModelDrivenForm } from './components/model-driven-form/model-driven-form';
 import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
-import { ProductService } from './components/productService';
+import { LoadingService, ProductService } from './components/productService';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ import { ProductService } from './components/productService';
     ImprovedMdf, 
 ],
   providers:[
-    
+    ProductService, LoadingService
   ],
   //templateUrl: './app.html',
   template:`
@@ -86,10 +86,10 @@ import { ProductService } from './components/productService';
   `,
   styleUrls: ['./app.css']
 })
-export class App{ 
+export class App{
   
   constructor(private productService : ProductService){
-    console.log(productService.getProducts());
+    console.log(productService.getProducts()); 
   }
 
   title: string = "Seyyit Battal ARVAS";

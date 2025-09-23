@@ -1,10 +1,13 @@
 import { Injectable } from "@angular/core";
 
-@Injectable({
-    providedIn: "root",
-})
-
+//Eğer dependency injection yapılacaksa @Injectable decoratoru şart.
+//Injectable ile işaretliyse o servistir.
+@Injectable()
 export class ProductService{
+    constructor(private loadingService: LoadingService){
+        loadingService.log();
+     }
+
 getProducts() : Product[]{
     return[
         {name: "Telephone", quantity: 2125656},
@@ -17,4 +20,10 @@ getProducts() : Product[]{
 export class Product{
     name: String;
     quantity: number;
+}
+
+export class LoadingService{
+    log(){
+        console.log("Loading...");
+    }
 }
