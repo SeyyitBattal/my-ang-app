@@ -15,6 +15,7 @@ import { ModelDrivenForm } from './components/model-driven-form/model-driven-for
 import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
 import { HttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
+import { RandomService } from './components/random-service/random-service';
 
 @Component({
   selector: 'app-root',
@@ -26,16 +27,16 @@ import { LoadingService, ProductService } from './components/productService';
     ImprovedMdf,
 ],
   providers:[
-    LoadingService,
+    LoadingService, RandomService,
     {provide: "stringProviderExample", useValue: "Bu yazı useValue ile geldi"}, 
     {
       provide: "productService", useFactory: (httpClient:HttpClient, loadingService:LoadingService) => {
-        httpClient.get("https://jsonplaceholder.typicode.com/posts").subscribe({
+        httpClient.get("https://dummyjson.com/products").subscribe({
         next:data => console.log(data)});
         return new ProductService(loadingService);
     }, deps:[HttpClient, LoadingService]}
   ],
-  //templateUrl: './app.html',
+  //templateUrl: './app.html', 
   template:`
     <h1 style="color: aqua;">ANGULAR</h1>
     <div>Hello {{title}}!</div>
@@ -90,6 +91,7 @@ import { LoadingService, ProductService } from './components/productService';
   <app-template-driven-form></app-template-driven-form>
   <app-model-driven-form></app-model-driven-form>
   <app-improved-mdf></app-improved-mdf>
+  <div>{{"RandomService'ten bu sefer gelen sayınız:" | titlecase}} {{randomService.random}}</div>
 
   `,
   styleUrls: ['./app.css']
@@ -98,7 +100,9 @@ export class App{
   
   constructor( 
       @Inject("stringProviderExample") value: string,
-      @Inject("productService") private productService:ProductService){
+      @Inject("productService") private productService:ProductService, 
+      public randomService:RandomService
+    ){
         console.log("useValue ile gelen değer: ", value);
         console.log(productService.getProducts());
       }
