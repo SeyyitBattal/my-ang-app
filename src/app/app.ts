@@ -16,6 +16,7 @@ import { ImprovedMdf } from "./components/improved-mdf/improved-mdf";
 import { HttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
 import { RandomService } from './components/random-service/random-service';
+import { CreateUser } from "./components/create-user/create-user";
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ import { RandomService } from './components/random-service/random-service';
     ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
     Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
-    ImprovedMdf,
+    ImprovedMdf,CreateUser,
 ],
   providers:[
     LoadingService, RandomService,
@@ -93,6 +94,7 @@ import { RandomService } from './components/random-service/random-service';
   <app-improved-mdf></app-improved-mdf>
   <div>{{"RandomService'ten bu sefer gelen sayınız:" | titlecase}} {{randomService.random}}</div>
 
+  <app-create-user></app-create-user>
   `,
   styleUrls: ['./app.css']
 })
