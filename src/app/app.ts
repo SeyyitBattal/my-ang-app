@@ -17,6 +17,7 @@ import { HttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
 import { RandomService } from './components/random-service/random-service';
 import { CreateUser } from "./components/create-user/create-user";
+import { Sidebar } from './components/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ import { CreateUser } from "./components/create-user/create-user";
     ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
     Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
-    ImprovedMdf,CreateUser,
+    ImprovedMdf,CreateUser, Sidebar
 ],
   providers:[
     LoadingService, RandomService,
@@ -39,6 +40,13 @@ import { CreateUser } from "./components/create-user/create-user";
   ],
   //templateUrl: './app.html', 
   template:`
+  <div class="app-container">
+
+  <app-sidebar (sidebarToggle)="onSidebarToggle()"></app-sidebar>
+
+  <main class="main-content" [class.sidebar-open]="sidebarOpen">
+    <div class="content-wrapper">
+
     <h1 style="color: aqua;">ANGULAR</h1>
     <div>Hello {{title}}!</div>
     <p>Meslek: {{name}}</p>
@@ -95,6 +103,10 @@ import { CreateUser } from "./components/create-user/create-user";
   <div>{{"RandomService'ten bu sefer gelen sayınız:" | titlecase}} {{randomService.random}}</div>
 
   <app-create-user></app-create-user>
+
+  </div>
+  </main>
+  </div>
   `,
   styleUrls: ['./app.css']
 })
@@ -109,6 +121,7 @@ export class App{
         console.log(productService.getProducts());
       }
 
+  sidebarOpen = true;
   title: string = "Seyyit Battal ARVAS";
   name: string = 'Software Engineer';
   src: string = "https://yt3.googleusercontent.com/L7fPOHO5TwVC_qz78Yo8P0MuJAB8I4FdQmOY2HSW7Z4_AFJZgAHzJCKQXo7ek1sy0pj0dIzM2Xg=s900-c-k-c0x00ffffff-no-rj";
@@ -121,6 +134,10 @@ export class App{
   pipeName: string = "Pipe kullanılmış text";
 
   shortNames: string[] = [];
+
+  onSidebarToggle(){
+    this.sidebarOpen = !this.sidebarOpen;
+  }
 
   submitButton(){
     console.log("Submit butonuna tıklandı.");

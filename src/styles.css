@@ -95,3 +95,33 @@ input:focus, textarea:focus, select:focus {
   from { opacity: 0; transform: translateY(5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 2;
+  transition: margin-left 0.3s ease;
+  padding: 1rem;
+}
+
+.main-content.sidebar-open {
+  margin-left: 50px;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .main-content.sidebar-open {
+    margin-left: 0;
+  }
+}
