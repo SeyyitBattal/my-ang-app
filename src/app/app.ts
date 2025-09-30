@@ -1,5 +1,5 @@
 import { Component, Inject} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { Home } from './home/home';
 import { FormsModule } from '@angular/forms';
 import { ExpDirective } from './directives/exp-directive';
@@ -17,7 +17,6 @@ import { HttpClient } from '@angular/common/http';
 import { LoadingService, ProductService } from './components/productService';
 import { RandomService } from './components/random-service/random-service';
 import { CreateUser } from "./components/create-user/create-user";
-import { Sidebar } from './components/sidebar/sidebar';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +25,7 @@ import { Sidebar } from './components/sidebar/sidebar';
     ExpDirective, StructuralDirective, ForDirective,
     UpperCasePipe, CurrencyPipe, DatePipe, SlicePipe, TitleCasePipe,
     Parent, Child2, LchComponent, TemplateDrivenForm, ModelDrivenForm,
-    ImprovedMdf,CreateUser, Sidebar
+    ImprovedMdf, CreateUser 
 ],
   providers:[
     LoadingService, RandomService,
@@ -36,17 +35,11 @@ import { Sidebar } from './components/sidebar/sidebar';
         httpClient.get("https://dummyjson.com/products").subscribe({
         next:data => console.log(data)});
         return new ProductService(loadingService);
-    }, deps:[HttpClient, LoadingService]}
+    }, deps:[HttpClient, LoadingService]},
   ],
-  //templateUrl: './app.html', 
+ 
   template:`
-  <div class="app-container">
-
-  <app-sidebar (sidebarToggle)="onSidebarToggle()"></app-sidebar>
-
-  <main class="main-content" [class.sidebar-open]="sidebarOpen">
     <div class="content-wrapper">
-
     <h1 style="color: aqua;">ANGULAR</h1>
     <div>Hello {{title}}!</div>
     <p>Meslek: {{name}}</p>
@@ -103,10 +96,17 @@ import { Sidebar } from './components/sidebar/sidebar';
   <div>{{"RandomService'ten bu sefer gelen sayınız:" | titlecase}} {{randomService.random}}</div>
 
   <app-create-user></app-create-user>
+  </div>
 
-  </div>
-  </main>
-  </div>
+        <ul>
+            <li class="nav-item">
+              <!-- Yönlendirmede href değil routerLink kullanılır -->
+              <a href="">Home</a> |
+              <a href="profile">Profile</a> | 
+              <a href="settings">Settings</a> 
+            </li>
+        </ul> 
+  <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.css']
 })
